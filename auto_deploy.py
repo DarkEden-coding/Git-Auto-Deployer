@@ -217,24 +217,25 @@ def execute_deployment() -> None:
         print("Building web assets...")
         run_shell_command("npm run build")
 
-    maintenance.start()
-    maintenance.update_status(f"Stopping {service_name}...", 10)
-
+    print(f"Stopping {service_name}...")
     if not run_shell_command(f"sudo systemctl stop {service_name}"):
-        maintenance.update_status("Failed to stop service.", 10)
-        maintenance.stop()
+        print(f"Failed to stop {service_name}")
         sys.exit(1)
+
+    time.sleep(5)
+    maintenance.start()
+    maintenance.update_status(f"Service {service_name} stopped. Starting update...", 20)
 
     git_update_commands: List[Dict] = [
         {
             "cmd": "git fetch --tags --all",
             "msg": "Fetching latest updates...",
-            "prog": 30,
+            "prog": 40,
         },
         {
             "cmd": f"git checkout tags/{latest_release_tag}",
             "msg": f"Switching to {latest_release_tag}...",
-            "prog": 60,
+            "prog": 70,
         },
     ]
 
@@ -247,11 +248,8 @@ def execute_deployment() -> None:
             break
 
     if deployment_successful:
-        maintenance.update_status("Finalizing update...", 80)
+        maintenance.update_status("Finalizing update...", 85)
         # Here you could add more steps like npm install or migrations
-
-    maintenance.update_status(f"Restarting {service_name}...", 90)
-    run_shell_command(f"sudo systemctl start {service_name}")
 
     if deployment_successful and latest_release_tag:
         with open(state_file_path, "w") as state_file:
@@ -265,6 +263,10 @@ def execute_deployment() -> None:
 
     time.sleep(2)  # Give user a moment to see 100%
     maintenance.stop()
+    time.sleep(5)
+
+    print(f"Restarting {service_name}...")
+    run_shell_command(f"sudo systemctl start {service_name}")
 
 
 def run_deployment_loop() -> None:
