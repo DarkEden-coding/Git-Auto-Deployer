@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #151921;
+  --surface-primary: #1a1d24;
+  --accent-blue: #63b3ed;
+  --shadow-dark: #0d0f12;
+  --shadow-light: #232730;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    background-color: var(--bg-primary);
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+.neumorphic-card {
+  background: var(--surface-primary);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(99, 179, 237, 0.15);
+}
+
+.neumorphic-input {
+  background: var(--surface-primary);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  border: none;
+  color: #cbd5e0;
+}
+
+.neumorphic-progress-track {
+  background: var(--surface-primary);
+  box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+  border-radius: 20px;
+  padding: 3px;
+}
+
+.neumorphic-progress-inner {
+  background: var(--surface-primary);
+  box-shadow: inset 2px 2px 4px var(--shadow-dark),
+    inset -2px -2px 4px var(--shadow-light);
+  border-radius: 17px;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.neumorphic-progress-fill {
+  background: var(--accent-blue);
+  box-shadow: 0 0 10px rgba(99, 179, 237, 0.3);
+  border-radius: 15px;
+  transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 transparent;
+}
+
+.text-status-error {
+  color: #fc8181;
+}
+
+.text-status-success {
+  color: #68d391;
+}
+
+.text-status-warning {
+  color: #f6e05e;
+}
+
+.text-status-info {
+  color: #63b3ed;
+}

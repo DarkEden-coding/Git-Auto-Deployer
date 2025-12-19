@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Update - Git Auto Deployer</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div
+      class="max-w-md w-full neumorphic-card p-8 space-y-8 animate-in fade-in zoom-in duration-500"
+    >
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="relative">
+          <div
+            class="w-20 h-20 border-4 border-[#63b3ed]/20 border-t-[#63b3ed] rounded-full animate-spin"
+          ></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8 text-[#63b3ed]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">System Update</h1>
+          <p class="text-slate-400 mt-2">
+            The application is being updated to the latest version.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex justify-between text-sm font-medium">
+          <span id="status-text">Initializing...</span>
+          <span id="status-percent" class="text-[#63b3ed]">0%</span>
+        </div>
+        <div class="neumorphic-progress-track w-full h-8">
+          <div class="neumorphic-progress-inner w-full h-full">
+            <div
+              id="status-bar"
+              class="neumorphic-progress-fill h-full"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="status-log"
+        class="text-xs font-mono neumorphic-input rounded-lg p-4 h-32 overflow-y-auto space-y-1"
+      >
+        <div class="text-[#63b3ed]">> Starting deployment process...</div>
+      </div>
+
+      <div
+        class="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-500"
+      >
+        <div class="flex items-center space-x-2">
+          <span
+            class="w-2 h-2 bg-[#63b3ed] rounded-full animate-pulse shadow-[0_0_8px_rgba(99,179,237,0.8)]"
+          ></span>
+          <span>Live Status Updates</span>
+        </div>
+        <div id="last-updated">Just now</div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
