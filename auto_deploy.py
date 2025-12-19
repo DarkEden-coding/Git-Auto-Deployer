@@ -267,6 +267,7 @@ def execute_deployment() -> None:
 
     print(f"Restarting {service_name}...")
     run_shell_command(f"sudo systemctl start {service_name}")
+    print(f"Restarted {service_name}.")
 
 
 def run_deployment_loop() -> None:
